@@ -30,4 +30,9 @@ public class ElectionController {
         electionService.deleteElection(electionId);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping
+    public void some() {
+
+    }
 }
