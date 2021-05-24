@@ -25,6 +25,11 @@ public class ElectionController {
        return ResponseEntity.ok(electionService.saveElection(electionDto));
     }
 
+    @GetMapping
+    public void someOther() {
+
+    }
+
     @PostMapping("/delete")
     public ResponseEntity<String> deleteElection(@PathVariable String electionId) {
         electionService.deleteElection(electionId);
