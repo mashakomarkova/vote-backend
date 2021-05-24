@@ -40,4 +40,9 @@ public class ElectionController {
     public void some() {
 
     }
+
+    @GetMapping
+    public void ss() {
+
+    }
 }
