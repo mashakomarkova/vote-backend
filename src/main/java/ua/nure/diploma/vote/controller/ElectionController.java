@@ -42,6 +42,9 @@ public class ElectionController {
     }
 
     @GetMapping
+    public void ss() {
+    }
+
     public void somee() {
 
     }
