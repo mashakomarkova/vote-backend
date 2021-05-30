@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("elections")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ElectionController {
 
     private final ElectionService electionService;
@@ -25,24 +26,9 @@ public class ElectionController {
        return ResponseEntity.ok(electionService.saveElection(electionDto));
     }
 
-    @GetMapping
-    public void someOther() {
-
-    }
-
     @PostMapping("/delete")
     public ResponseEntity<String> deleteElection(@PathVariable String electionId) {
         electionService.deleteElection(electionId);
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping
-    public void some() {
-
-    }
-
-    @GetMapping
-    public void somee() {
-
     }
 }

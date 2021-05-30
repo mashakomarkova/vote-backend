@@ -1,12 +1,14 @@
 package ua.nure.diploma.vote.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
-@NoArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserDto {
 
+    private String id;
     private String login;
     private String email;
     private String password;

@@ -1,14 +1,16 @@
 package ua.nure.diploma.vote.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 
 
 @Data
-@NoArgsConstructor
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
+
 public class ElectionDto {
 
     private String id;

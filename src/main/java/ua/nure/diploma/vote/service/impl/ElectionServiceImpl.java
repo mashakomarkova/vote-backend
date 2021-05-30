@@ -7,6 +7,7 @@ import ua.nure.diploma.vote.mapper.ElectionMapper;
 import ua.nure.diploma.vote.repository.ElectionRepository;
 import ua.nure.diploma.vote.service.ElectionService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +26,9 @@ public class ElectionServiceImpl implements ElectionService {
     @Override
     public ElectionDto saveElection(ElectionDto electionDto) {
         electionDto.setId(UUID.randomUUID().toString());
+        electionDto.setStatus("ACTIVE");
+        electionDto.setDateOfRegister(new Date());
+
         electionRepository.save(electionMapper.mapToElection(electionDto));
         return electionDto;
     }

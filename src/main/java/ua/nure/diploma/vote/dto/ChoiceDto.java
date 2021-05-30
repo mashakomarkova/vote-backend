@@ -1,12 +1,13 @@
 package ua.nure.diploma.vote.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Data
-@NoArgsConstructor
+@RequiredArgsConstructor
+@Builder
+@AllArgsConstructor
 public class ChoiceDto {
     private String id;
     private String name;
