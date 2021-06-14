@@ -1,6 +1,7 @@
 package ua.nure.diploma.vote.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ua.nure.diploma.vote.dto.ChoiceDto;
@@ -15,6 +16,7 @@ import ua.nure.diploma.vote.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -104,5 +106,27 @@ public class ElectionController {
         userDto.setTopics(topics);
         userService.updateUser(userDto);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/filter")
+    public List<ElectionDto> filterElections(@RequestParam(required = false) String questionText,
+                                             @RequestParam(required = false) String country,
+                                             @RequestParam(required = false) String city) {
+        if (questionText != null) {
+            return electionService.findAllElections().stream().filter(electionDto ->
+                    StringUtils.containsIgnoreCase(electionDto.getQuestionText(),questionText))
+                    .collect(Collectors.toList());
+        }
+        if (country != null) {
+            return electionService.findAllElections().stream().filter(electionDto ->
+                    StringUtils.containsIgnoreCase(electionDto.getCountry(),country))
+                    .collect(Collectors.toList());
+        }
+        if (city != null) {
+            return electionService.findAllElections().stream().filter(electionDto ->
+                    StringUtils.containsIgnoreCase(electionDto.getCity(), city))
+                    .collect(Collectors.toList());
+        }
+        return electionService.findAllElections();
     }
 }

@@ -1,6 +1,7 @@
 package ua.nure.diploma.vote.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import ua.nure.diploma.vote.dto.ElectionDto;
 import ua.nure.diploma.vote.entity.Choice;
@@ -10,6 +11,7 @@ import ua.nure.diploma.vote.repository.ElectionRepository;
 import ua.nure.diploma.vote.service.ElectionService;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +22,11 @@ public class ElectionServiceImpl implements ElectionService {
 
     @Override
     public List<ElectionDto> findAllElections() {
-        return electionMapper.mapToElectionDtoList(electionRepository.findAll());
+        return electionMapper.mapToElectionDtoList(electionRepository.findAll())
+                .stream()
+                .filter(electionDto -> StringUtils.equalsIgnoreCase("ACTIVE",electionDto.getStatus()))
+                .filter(electionDto -> StringUtils.equalsIgnoreCase("public", electionDto.getAccess()))
+                .collect(Collectors.toList());
     }
 
     @Override
