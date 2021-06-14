@@ -8,10 +8,14 @@ import org.mapstruct.factory.Mappers;
 import ua.nure.diploma.vote.dto.UserDto;
 import ua.nure.diploma.vote.entity.User;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
     UserDto mapToUserDto(User user);
 
     User mapToUser(UserDto user);
+
+    List<UserDto> mapToUserDtoList(List<User> users);
 }

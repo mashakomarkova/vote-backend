@@ -14,6 +14,7 @@ public class Election {
     private String questionText;
     private String access;
     private String status;
+    private String topic;
     private String userId;
     private Date dateOfRegister;
     private String city;

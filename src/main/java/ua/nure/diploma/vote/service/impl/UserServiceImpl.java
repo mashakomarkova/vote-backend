@@ -8,6 +8,7 @@ import ua.nure.diploma.vote.mapper.UserMapper;
 import ua.nure.diploma.vote.repository.UserRepository;
 import ua.nure.diploma.vote.service.UserService;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -32,5 +33,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getByEmailAndPassword(String email, String password) {
         return null;
+    }
+
+    @Override
+    public void updateUser(UserDto userDto) {
+        userRepository.save(userMapper.mapToUser(userDto));
+    }
+
+    @Override
+    public List<UserDto> findAllUsers() {
+        return userMapper.mapToUserDtoList(userRepository.findAll());
     }
 }
