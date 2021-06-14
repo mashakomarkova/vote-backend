@@ -2,6 +2,7 @@ package ua.nure.diploma.vote.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ua.nure.diploma.vote.dto.ChoiceDto;
@@ -28,7 +29,7 @@ public class ElectionController {
     private final ChoiceService choiceService;
     private final ElectionMapper electionMapper;
 
-    @GetMapping("elections")
+    @GetMapping(value = "elections",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<ElectionDto>> findAllElections() {
         return ResponseEntity.ok(electionService.findAllElections());
     }
