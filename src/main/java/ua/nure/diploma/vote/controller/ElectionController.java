@@ -29,8 +29,8 @@ public class ElectionController {
     private final ElectionMapper electionMapper;
 
     @GetMapping("elections")
-    public List<ElectionDto> findAllElections() {
-        return electionService.findAllElections();
+    public ResponseEntity<List<ElectionDto>> findAllElections() {
+        return ResponseEntity.ok(electionService.findAllElections());
     }
 
     @PostMapping("elections/create")
