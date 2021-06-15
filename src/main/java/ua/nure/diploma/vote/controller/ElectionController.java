@@ -96,7 +96,10 @@ public class ElectionController {
     public List<ElectionDto> getRecommendedElections(@PathVariable String email) {
         UserDto userDto = userService.getUser(email);
         List<String> topics = Optional.ofNullable(userDto.getTopics()).orElseGet(ArrayList::new);
-       return electionService.findByTopics(topics);
+       return electionService.findByTopics(topics).stream()
+               .filter(electionDto -> StringUtils.equalsIgnoreCase("ACTIVE",electionDto.getStatus()))
+               .filter(electionDto -> StringUtils.equalsIgnoreCase("public", electionDto.getAccess()))
+               .collect(Collectors.toList());
     }
 
     @PostMapping("/topics/{email}/{topic}")
